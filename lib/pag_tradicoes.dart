@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    title: "App",
-    debugShowCheckedModeBanner: false,
-    home: PagTradicoes(),
-  ));
+  runApp(
+    const MaterialApp(
+      title: "App",
+      debugShowCheckedModeBanner: false,
+      home: PagTradicoes(),
+    ),
+  );
 }
 
 class PagTradicoes extends StatelessWidget {
@@ -13,10 +15,7 @@ class PagTradicoes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Criamos o controlador diretamente no método build do StatelessWidget
     final ScrollController controller = ScrollController();
-
-    // Função de scroll idêntica à do seu exemplo de referência
     void scrollDown() {
       controller.animateTo(
         controller.position.maxScrollExtent,
@@ -26,35 +25,40 @@ class PagTradicoes extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: const Color(0xFF002868), // Fundo Azul
-      
-      // Botão flutuante para descer a página automaticamente
+      backgroundColor: const Color(0xFF002868),
       floatingActionButton: FloatingActionButton.small(
         onPressed: scrollDown,
-        child: const Icon(Icons.arrow_downward_sharp),
+        child: Icon(Icons.arrow_back),
       ),
-      
+
       appBar: AppBar(
-        leading: ElevatedButton(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          color: Colors
+              .white,
           onPressed: () {
             Navigator.maybePop(context);
           },
-          child: Icon(Icons.arrow_back),
         ),
         title: const Text('EUA Info'),
         centerTitle: true,
         backgroundColor: Colors.blue.shade500,
       ),
 
-      // SingleChildScrollView conectado ao controlador (controller)
       body: SingleChildScrollView(
         controller: controller,
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            // --- SEÇÃO TRADIÇÕES ---
-            Text('🦃 Tradições', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white)),
+            Text(
+              'Tradições',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
             SizedBox(height: 8),
             Text(
               '• Ação de Graças: O feriado familiar mais importante, focado em gratidão e em um jantar com peru assado.\n'
